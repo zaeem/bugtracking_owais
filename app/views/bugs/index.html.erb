@@ -1,0 +1,31 @@
+<h1>Listing BUGS</h1>
+
+<table  class="table table-striped">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Deadline(Hr)</td>
+      <td>Type</td>
+      <td>Status</td>
+      <td>Show</td>
+      <td>Delete</td>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @bugs.each do |bug| %>
+      <tr>
+        <td><%= bug.title %></td>
+        <td><%= bug.deadline %></td>
+        <td><%= bug.bug_type %></td>
+        <td><%= bug.status %></td>
+        <td><%= link_to 'show', {:action => 'show', :id => bug.id}, :class => 'btn btn-mini btn-primary' %></td>
+        <td><%= link_to 'Destroy', {:action => 'destroy', :id => bug.id}, :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Bug', {:action => 'new'}, :class => 'btn btn-mini btn-success' %>

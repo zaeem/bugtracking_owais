@@ -1,0 +1,81 @@
+
+<%= form_for :bug, :url => {:action => 'create'}, :html => {:multipart => true} do |f| %>
+  <legend><%= controller.action_name.capitalize %> BUG</legend>
+  <fieldset>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :title, :class => 'form-label' %><br />
+          <%= f.text_field :title , :required => true, :class=>'form-control'%>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :deadline, :class => 'control-label' %><br />
+          <%= f.text_field :deadline, :class=>'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="col-md-6">
+            <%= f.label :FEATURE, :class => 'control-label' %><br />
+            <%= f.radio_button :bug_type, 'feature', :checked => true, :class=>'form-control' %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :BUG, :class => 'control-label' %><br />
+            <%= f.radio_button :bug_type, 'bug', :class=>'form-control' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :status, :class => 'control-label' %><br />
+          <span id="feature_dropdown">
+            <%= f.collection_select :status, Bug::FEATURES, :to_s, :to_s, {} ,{class: "form-control"} %>
+          </span>
+          <span id="bug_dropdown">
+            <%= f.collection_select :status, Bug::BUGS, :to_s, :to_s, {}, {class: "form-control"} %>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :AssignDeveloper, :class => 'control-label' %><br />
+          <%= f.collection_select :developer_id, @developers, :id, :name, {}, {class: "form-control"}%>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :PROJECT %><br />
+          <%= f.collection_select :project_id, @projects,:id,:name,{} ,{class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+        <%= f.label :IMAGE, :class => 'control-label' %><br />
+          <%= f.file_field :attachment, :class=>'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.submit "Create", :class => 'btn btn-mini btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </fields>
+
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+<%= javascript_include_tag "custom" %>
+

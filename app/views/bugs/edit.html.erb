@@ -1,0 +1,13 @@
+<h1>edit bug <%= @bug.title %></h1>
+
+<%= form_for(@bug, :url => {:action => 'update', :id => @bug.id}) do |f| %>
+  <p>
+    Title: <%= f.text_field 'title' %>
+  </p>
+  <p>
+    Deadline: <%= f.text_field 'deadline' %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>

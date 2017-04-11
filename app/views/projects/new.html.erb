@@ -1,0 +1,23 @@
+
+<%= form_for :project, :url => {:action => 'create'} do |f| %>
+  <legend><%= controller.action_name.capitalize %> Project</legend>
+  <fieldset>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.label :name, :class => 'form-label' %><br />
+          <%= f.text_field :name , :required => true, :class => 'form-control'%>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= f.submit "Create", :class => 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+
+<%= link_to 'Back', {:action => nil}, :class => 'btn' %>

@@ -1,0 +1,10 @@
+<h1>edit project <%= @project.name %></h1>
+
+<%= form_for(@project, :url => {:action => 'update', :id => @project.id}) do |f| %>
+  <p>
+    Title: <%= f.text_field 'name' %>
+  </p>
+  <p>
+    <%= f.submit "Save" %>
+  </p>
+<% end %>
